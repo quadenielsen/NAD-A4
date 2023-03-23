@@ -7,6 +7,7 @@ from .views import (
     load_post_data_view,
     like_unlike_post,
     post_detail,
+    post_detail_data_view,
 )
 
 app_name = 'posts'
@@ -30,4 +31,5 @@ urlpatterns = [
     # this view is called by the getData() function in main.js, which is called when the page is loaded, and when the load button is pressed
     path('data/<int:num_posts>/', load_post_data_view, name='posts-data'),
 
+    path('<pk>/data/', post_detail_data_view, name='post-detail-data'),
 ]
