@@ -6,8 +6,7 @@ from .views import (
     post_list_and_create,
     load_post_data_view,
     like_unlike_post,
-
-    hello_world_view,
+    post_detail,
 )
 
 app_name = 'posts'
@@ -25,8 +24,10 @@ urlpatterns = [
     path('', post_list_and_create, name='main-board'),
     # this view is called then the like button sends a request with the like-unlike url
     path('like-unlike/', like_unlike_post, name='like-unlike'),
+
+    path('<pk>/', post_detail, name='post-detail'),
+
     # this view is called by the getData() function in main.js, which is called when the page is loaded, and when the load button is pressed
     path('data/<int:num_posts>/', load_post_data_view, name='posts-data'),
 
-    path('hello-world/', hello_world_view, name='hello-world'),
 ]
