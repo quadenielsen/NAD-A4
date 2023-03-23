@@ -14,6 +14,7 @@ app_name = 'posts'
 # have that text as part of the URL in order to access that page
 urlpatterns = [
     path('', post_list_and_create, name='main-board'),
-    path('data/', load_post_data_view, name='posts-data'),
+    path('data/<int:num_posts>/', load_post_data_view, name='posts-data'),
+
     path('hello-world/', hello_world_view, name='hello-world'),
 ]
