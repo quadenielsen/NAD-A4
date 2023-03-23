@@ -42,9 +42,13 @@ INSTALLED_APPS = [
     'profiles',
     # 3rd party apps
     'crispy_forms',
-
-
+    # hack from SOF
+    # needed to run pip install crispy-bootstrap4
+    'crispy_bootstrap4',
 ]
+
+# hack from SOF
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

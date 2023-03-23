@@ -5,6 +5,8 @@
 from django.shortcuts import render
 from .models import Post
 from django.http import JsonResponse
+from .forms import PostForm
+from profiles.models import Profile
 
 # Create your views here.
 
@@ -12,10 +14,20 @@ from django.http import JsonResponse
 # get the posts on the database and make the data available
 # this function is called when the server gets a request from a client ??
 def post_list_and_create(request):
-    # get all the posts from the database
-    qs = Post.objects.all()
+
+    form = PostForm(request.POST or None)
+
+    if is_ajax(request=request):
+        if form.is_valid():
+            author = Profile.objects.get(user=request.user)
+            instance = form.save(commit=False)
+            instance.author = author
+            instance.save()
+    context = {
+        'form': form,
+    }
     # send a response containing the main.html file for the posts app, and the dictionary containing all posts in the database
-    return render(request, 'posts/main.html', {'qs':qs})
+    return render(request, 'posts/main.html', context)
 
 
 
