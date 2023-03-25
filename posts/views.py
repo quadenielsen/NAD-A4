@@ -10,6 +10,10 @@ from profiles.models import Profile
 
 # Create your views here.
 
+# is_ajax function copied from SOF
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
 
 # get the posts on the database and make the data available
 # this function is called when the server gets a request from a client ??
@@ -83,9 +87,7 @@ def post_detail_data_view(request, pk):
     }
     return JsonResponse({'data': data})
 
-# is_ajax function copied from SOF
-def is_ajax(request):
-    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
 
 def like_unlike_post(request):
     if is_ajax(request=request):
