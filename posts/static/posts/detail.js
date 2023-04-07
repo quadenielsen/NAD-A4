@@ -1,5 +1,14 @@
-console.log('hello world detail')
+/*
+    FILE:           posts/details.js
+    PROJECT:        posts_proj
+    PROGRAMMER:     Quade Nielsen
+    LAST EDIT:      April 7, 2023
+    DESCRIPTION:    This file contains the JS for the details page of the posts module for the posts_proj web application.
+*/
+
 console.log(window.location)
+
+//DOM elements
 const postBox = document.getElementById('post-box')
 const alertBox = document.getElementById('alert-box')
 const backBtn = document.getElementById('back-btn')
@@ -12,7 +21,6 @@ const deleteUrl = window.location.href + "delete/"
 const updateForm = document.getElementById('update-form')
 const deleteForm = document.getElementById('delete-form')
 
-
 const spinnerBox = document.getElementById('spinner-box')
 
 const titleInput = document.getElementById('id_title')
@@ -24,6 +32,7 @@ const csrf = document.getElementsByName('csrfmiddlewaretoken')
     history.back()
 }) */
 
+//get the details of the post
 $.ajax({
     type: 'GET',
     url: url,

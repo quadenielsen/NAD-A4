@@ -1,3 +1,9 @@
+#FILE:           posts_proj/urls.py
+#PROJECT:        posts_proj
+#PROGRAMMER:     Quade Nielsen
+#LAST EDIT:      April 7, 2023
+#DESCRIPTION:    This file contains the base urlpatterns for the posts_proj web application.  These urlpatterns link to the views.py files of the app's modules.
+
 """posts_proj URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:

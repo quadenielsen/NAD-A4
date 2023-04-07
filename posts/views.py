@@ -1,5 +1,8 @@
-# this file contains the views for the posts application
-# these views are intended to manage the web app's user interface
+#FILE:           posts/views.py
+#PROJECT:        posts_proj
+#PROGRAMMER:     Quade Nielsen
+#LAST EDIT:      April 7, 2023
+#DESCRIPTION:    This file contains the views for the posts module of the posts_proj web application.  
 
 # we want APIs for rendering UI, the Post class for data management, and Json data management
 from django.shortcuts import render, redirect
@@ -12,13 +15,26 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-# is_ajax function copied from SOF
+#   NAME:           is_ajax
+#   
+#   DESCRIPTION:    Checks a request object to see if it is an ajax request.  Since request.is_ajax() is deprecated, this function is used instead.
+#
+#   PARAMETERS:     request:    the request to be checked
+#
+#   RETURNS:        true if the request is an ajax request
 def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
 
-# get the posts on the database and make the data available
-# this function is called when the server gets a request from a client ??
+
+#   NAME:           post_list_and_create
+#   
+#   DESCRIPTION:    This view is called when a user requests to nagvigate to the main posts page.
+#                   It fetches a list of posts from the server and sends them with the posts page.
+#
+#   PARAMETERS:     request:    the request being received by the server
+#
+#   RETURNS:        an HttpResponse containg the page and the relevant data
 @login_required
 def post_list_and_create(request):
 
@@ -43,6 +59,15 @@ def post_list_and_create(request):
     # send a response containing the main.html file for the posts app, and the dictionary containing all posts in the database
     return render(request, 'posts/main.html', context)
 
+
+#   NAME:           post_list_and_create
+#   
+#   DESCRIPTION:    This view is called when a user requests to nagvigate to the main posts page.
+#                   It fetches a list of posts from the server and sends them with the posts page.
+#
+#   PARAMETERS:     request:    the request being received by the server
+#
+#   RETURNS:        an HttpResponse containg the page and the relevant data
 @login_required
 def post_detail(request, pk):
     obj = Post.objects.get(pk=pk)
@@ -52,7 +77,6 @@ def post_detail(request, pk):
         'obj': obj,
         'form': form,
     }
-
     return render(request, 'posts/detail.html', context)
 
 @login_required

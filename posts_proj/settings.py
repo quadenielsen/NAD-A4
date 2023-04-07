@@ -1,3 +1,9 @@
+#FILE:           posts_proj/settings.py
+#PROJECT:        posts_proj
+#PROGRAMMER:     Quade Nielsen
+#LAST EDIT:      April 7, 2023
+#DESCRIPTION:    This file contains the conifguration settings for the posts_proj web application.  
+
 """
 Django settings for posts_proj project.
 
@@ -25,7 +31,7 @@ SECRET_KEY = 'django-insecure-tk3pcnznp)31*rvz8@$0lpx&_f2j1j10wjf73o)emf5)1e($$p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

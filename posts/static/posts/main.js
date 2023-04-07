@@ -1,9 +1,11 @@
-//this file contains the main JS functions for the posts application
+/*
+    FILE:           posts/main.js
+    PROJECT:        posts_proj
+    PROGRAMMER:     Quade Nielsen
+    LAST EDIT:      April 7, 2023
+    DESCRIPTION:    This file contains the JS for the main page of the posts module for the posts_proj web application.
+*/
 
-//when the posts page is loaded, the code is automatically run
-console.log('hello world')
-
-//we can interact with the DOM of the posts page
 
 //DOM element variables
 const postsBox = document.getElementById('posts-box')
@@ -16,7 +18,6 @@ const title = document.getElementById('id_title')
 const body = document.getElementById('id_body')
 const csrf = document.getElementsByName('csrfmiddlewaretoken')
 
-
 const url = window.location.href
 
 const alertBox = document.getElementById('alert-box')
@@ -28,7 +29,15 @@ const closeBtns = [...document.getElementsByClassName('add-modal-close')]
 
 
 
-//csrf token code from https://docs.djangoproject.com/en/4.1/howto/csrf/
+/*
+    NAME:           getCookie
+
+    DESCRIPTION:    Generates a csrf token. Obtained from this code from https://docs.djangoproject.com/en/4.1/howto/csrf/
+
+    PARAMETERS:     name:   the name of the cookie to be generated
+
+    RETURNS:        the generated cookie
+*/
 const getCookie = (name) => {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -46,10 +55,7 @@ const getCookie = (name) => {
 }
 const csrftoken = getCookie('csrftoken');
 
-
-
-
-
+//check to see if a post has been deleted
 const deleted = localStorage.getItem('title')
 if (deleted){
     handleAlerts('danger', `deleted "${deleted}"`)
@@ -57,8 +63,15 @@ if (deleted){
 }
 
 
+/*
+    NAME:           likeUnlikePosts
 
-//function called when a like button is pressed
+    DESCRIPTION:    Updates the like data of a post when a user clicks the like button.
+
+    PARAMETERS:     none
+
+    RETURNS:        none
+*/
 const likeUnlikePosts = () => {
     //get an array of like-unlike forms to store each form for each like-unlike button
     const likeUnlikeForms = [...document.getElementsByClassName('like-unlike-forms')]
@@ -95,7 +108,15 @@ const likeUnlikePosts = () => {
 //variable to set the default number of posts shown per load
 let visible = 3
 
-//this function loads a list of posts
+/*
+    NAME:           getData
+
+    DESCRIPTION:    Gets a list of posts from the server and displays it on the page.
+
+    PARAMETERS:     none
+
+    RETURNS:        none
+*/
 const getData = () => {
     //send an ajax request telling the server that the client wants to get a list of posts
     $.ajax({
@@ -149,16 +170,20 @@ const getData = () => {
     })
 }
 
+//listen for when the user presses the 'Load more posts' button
 loadBtn.addEventListener('click', () =>{
     spinnerBox.classList.remove('not-visible')
     visible += 3
     getData()
 })
 
+//listen for when the user submits a new post
 let newPostID = null
 postForm.addEventListener('submit', e => {
     e.preventDefault()
 
+
+    //send the post data to the server and update the page
     $.ajax({
         type: 'POST',
         url: '',
@@ -205,9 +230,12 @@ postForm.addEventListener('submit', e => {
     })
 
 
+//listen for when the user presses the 'add post' button on the new post window
+//show the image dropzone
 addBtn.addEventListener('click', () => {
     dropzone.classList.remove('not-visible')
 })
+
 
 
 closeBtns.forEach(btn => btn.addEventListener('click', () => {
@@ -218,6 +246,8 @@ closeBtns.forEach(btn => btn.addEventListener('click', () => {
     const myDropzone = Dropzone.forElement('#my-dropzone')
     myDropzone.removeAllFiles(true)
 }))
+
+
 
 Dropzone.autoDiscover = false
 const myDropzone = new Dropzone('#my-dropzone', {

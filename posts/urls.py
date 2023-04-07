@@ -1,4 +1,8 @@
-# this file contains the url patterns which determine what view is called when the server receives a request
+#FILE:           posts/urls.py
+#PROJECT:        posts_proj
+#PROGRAMMER:     Quade Nielsen
+#LAST EDIT:      April 7, 2023
+#DESCRIPTION:    This file contains the urlpatterns for the posts module of the posts_proj web application.
 
 from django.urls import path
 # we need to import our views to this file so that we can tell the server what view to call when the server receives a request

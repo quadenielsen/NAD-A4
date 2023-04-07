@@ -1,3 +1,11 @@
+/*
+    FILE:           style.css
+    PROJECT:        posts_proj
+    PROGRAMMER:     Quade Nielsen
+    LAST EDIT:      April 7, 2023
+    DESCRIPTION:    This file contains the html classes for the posts_proj web application.
+*/
+
 .not-visible {
     display: none;
 }

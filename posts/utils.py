@@ -1,3 +1,9 @@
+#FILE:           posts/utils.py
+#PROJECT:        posts_proj
+#PROGRAMMER:     Quade Nielsen
+#LAST EDIT:      April 7, 2023
+#DESCRIPTION:    This file contains the utility functions for the posts module of the posts_proj web application.  
+
 from .models import Post
 from profiles.models import Profile
 from django.http import HttpResponse
